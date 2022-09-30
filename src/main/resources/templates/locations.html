@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Device Manager - Locations</title>
+</head>
+<body>
+	<h1>Device Manager <a href="/logout" class="btn btn-danger">Logout</a></h1>
+	<div>
+		<h2>Locations
+		<a href="/" class="btn btn-info">Devices</a>
+		<a href="/persons" class="btn btn-info">Persons</a>
+		<a href="/categories" class="btn btn-info">Categories</a>
+		<a sec:authorize="hasAuthority('ADMIN')" href="/config" class="btn btn-warning">Configure</a>
+		</h2>
+	</div>
+	<p></p>
+	<div sec:authorize="hasAuthority('ADMIN')"><a href="/locations/addlocation" class="btn btn-primary">New Location...</a></div>
+	<p></p>
+	<div><label for="search">Search: &nbsp; </label><input type="text" /> not yet implemented</div>
+	<p></p>
+	<table class="table table-striped" style="width: 50%">
+		<tr>
+			<th>Office</th>
+			<th>Address</th>
+			<th>Department</th>
+			<th>Room</th>
+			<th>Notes</th>
+			<th sec:authorize="hasAuthority('ADMIN')">edit</th>
+			<th sec:authorize="hasAuthority('ADMIN')">del</th>
+		</tr>
+		<tr th:each ="location : ${locations}">
+			<td th:text="${location.office}" />
+			<td th:text="${location.address}" />
+			<td th:text="${location.department}" />
+			<td th:text="${location.room}" />
+			<td th:text="${location.notes}" />
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/locations/editlocation/{id}(id=${location.locationId})}" class="btn btn-primary">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/locations/delete/{id}(id=${location.locationId})}" class="btn btn-danger">Del</a></td>
+		</tr>
+	</table>
+</body>
+</html>

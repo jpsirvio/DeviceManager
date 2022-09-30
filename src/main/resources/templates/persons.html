@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Device Manager - Persons</title>
+</head>
+<body>
+	<h1>Device Manager <a href="/logout" class="btn btn-danger">Logout</a></h1>
+	<div>
+		<h2>Persons
+		<a href="/" class="btn btn-info">Devices</a>
+		<a href="/locations" class="btn btn-info">Locations</a>
+		<a href="/categories" class="btn btn-info">Categories</a>
+		<a sec:authorize="hasAuthority('ADMIN')" href="/config" class="btn btn-warning">Configure</a>
+		</h2>
+	</div>
+	<p></p>
+	<div sec:authorize="hasAuthority('ADMIN')"><a href="/persons/addperson" class="btn btn-primary">New Person...</a></div>
+	<p></p>
+	<div><label for="search">Search: &nbsp; </label><input type="text" /> not yet implemented</div>
+	<p></p>
+	<table class="table table-striped" style="width: 50%">
+		<tr>
+			<th>Owner</th>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Notes</th>
+			<th sec:authorize="hasAuthority('ADMIN')">edit</th>
+			<th sec:authorize="hasAuthority('ADMIN')">del</th>
+		</tr>
+		<tr th:each ="person : ${persons}">
+			<td th:text="${person.email}" />
+			<td th:text="${person.firstName} + ' ' + ${person.lastName}" />
+			<td th:text="${person.role}" />
+			<td th:text="${person.notes}" />
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/persons/editperson/{id}(id=${person.personId})}" class="btn btn-primary">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/persons/delete/{id}(id=${person.personId})}" class="btn btn-danger">Del</a></td>
+		</tr>
+	</table>
+</body>
+</html>

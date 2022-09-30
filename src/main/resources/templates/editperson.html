@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Device Manager - Add Person</title>
+</head>
+<body>
+	<h1>Devices</h1>
+	<h2>Edit Person</h2>
+	<form th:object="${editPerson}" th:action="@{/persons/saveperson}" action="#" method="post" class="table table-striped" style="width: 30%">
+		<input type="hidden" id="personId" th:field="*{personId}" />
+		<div></div>
+		
+		<label for="email">E-mail:</label>
+		<input type="text" id="email" th:field="*{email}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="firstName">First Name:</label>
+		<input type="text" id="firstName" th:field="*{firstName}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="lastName">Last Name:</label>
+		<input type="text" id="lastName" th:field="*{lastName}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+			
+		<label for="notes">Notes:</label>
+		<input type="text" id="notes" th:field="*{notes}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="role">Role:</label>
+		<input type="text" id="role" th:field="*{role}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="admin">Admin:</label>
+		<input type="text" id="admin" th:field="*{admin}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="deleted">Deleted:</label>
+		<input type="text" id="deleted" th:field="*{deleted}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<input type="submit" value="Save" class="btn btn-success"></input>	
+	</form>		
+	<a href="/" class="btn btn-secondary">Cancel</a>
+
+</body>
+</html>

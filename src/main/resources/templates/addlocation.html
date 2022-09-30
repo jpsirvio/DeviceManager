@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Device List - Add new</title>
+</head>
+<body>
+	<h1>Devices</h1>
+	<h2>Add Location</h2>
+	 	<form th:object="${location}" th:action="@{savelocation}" action="#" method="post" class="table table-striped" style="width: 30%">
+		<label for="office">Office:</label>
+		<input type="text" id="office" th:field="*{office}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="address">Address:</label>
+		<input type="text" id="address" th:field="*{address}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="department">Department:</label>
+		<input type="text" id="deparment" th:field="*{department}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="room">Room:</label>
+		<input type="text" id="room" th:field="*{room}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+			
+		<label for="notes">Notes:</label>
+		<input type="text" id="notes" th:field="*{notes}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="deleted">Deleted:</label>
+		<input type="text" id="deleted" th:field="*{deleted}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<input type="submit" value="Save" class="btn btn-success"></input>		
+	</form>
+	<a href="/" class="btn btn-secondary">Cancel</a>
+</body>
+</html>

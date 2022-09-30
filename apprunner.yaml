@@ -1,0 +1,10 @@
+version: 1.0
+runtime: corretto 11
+build:
+	commands:
+		build:
+			- mvn clean package
+run:
+	command: java -Xms256m -jar .mvn/wrapper/maven-wrapper.jar .
+	networkd:
+		port: 8080
