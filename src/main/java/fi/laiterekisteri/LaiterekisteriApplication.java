@@ -33,40 +33,40 @@ public class LaiterekisteriApplication {
 		return (args) -> {
 			
 			Log.info("create persons");
-			// Person(String userName, String email, String firstName, String lastName, String notes, String passwordHash, String role, int admin, int deleted)
-			prepo.save(new Person("-----"," ","unspecified","-","This is a unspecified user for devices without a named user","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,0));
-			prepo.save(new Person("11111","first.user@test.com","First","User","This is the first user. Admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,0));
-			prepo.save(new Person("22222","second.user@test.com","Second","User","Second user, not an admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,0));
-			prepo.save(new Person("33333","third.user@test.com","Third","User","Third user, not an admin, is deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,1));
-			prepo.save(new Person("44444","fourth.user@test.com","Fourth","User","Fourth user, admin and deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,1));
-			prepo.save(new Person("user","user@test.com","User","User","Test User","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,0));
-			prepo.save(new Person("admin","admin@test.com","Admin","Admin","Test Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,0));
-			prepo.save(new Person("superadmin","superadmin@test.com","Super","Admin","Test Super Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,0));
+			// Person(String userName, String email, String firstName, String lastName, String notes, String passwordHash, String role, boolean admin, boolean deleted)
+			prepo.save(new Person("-----"," ","unspecified","-","This is a unspecified user for devices without a named user","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
+			prepo.save(new Person("11111","first.user@test.com","First","User","This is the first user. Admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,false));
+			prepo.save(new Person("22222","second.user@test.com","Second","User","Second user, not an admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
+			prepo.save(new Person("33333","third.user@test.com","Third","User","Third user, not an admin, is deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
+			prepo.save(new Person("44444","fourth.user@test.com","Fourth","User","Fourth user, admin and deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,false));
+			prepo.save(new Person("user","user@test.com","User","User","Test User","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
+			prepo.save(new Person("admin","admin@test.com","Admin","Admin","Test Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,false));
+			prepo.save(new Person("superadmin","superadmin@test.com","Super","Admin","Test Super Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,true));
 			
 			Log.info("create locations");
 			// String office, String address, String room, String notes, int deleted
-			lrepo.save(new Location("Test Office","1 Office Street, Testville","Department A","Unit 1","2nd Floor, Room 3","This is a note",0));
-			lrepo.save(new Location("Old Office","4 Office Street, Testville","Department B","Unit 3","5th Floor, Room 6","This is a note",1));
-			lrepo.save(new Location("w/ user","","","","","This is for devices carried by the user and with no static location",0));
+			lrepo.save(new Location("Test Office","1 Office Street, Testville","Department A","Unit 1","2nd Floor, Room 3","This is a note",false));
+			lrepo.save(new Location("Old Office","4 Office Street, Testville","Department B","Unit 3","5th Floor, Room 6","This is a note",false));
+			lrepo.save(new Location("w/ user","","","","","This is for devices carried by the user and with no static location",false));
 			
 			Log.info("create device categories");
 			// String category, String notes, int deleted
-			crepo.save(new Category("Laptop Computer","This is category for laptops",0));
-			crepo.save(new Category("Laptop","This is an old category for laptops",1));
-			crepo.save(new Category("Smartphone","This is category for smartphones",0));
-			crepo.save(new Category("Video Conference System","",0));
+			crepo.save(new Category("Laptop Computer","This is category for laptops",false));
+			crepo.save(new Category("Laptop","This is an old category for laptops",true));
+			crepo.save(new Category("Smartphone","This is category for smartphones",false));
+			crepo.save(new Category("Video Conference System","",false));
 
 			Log.info("create devices");
 			// Device(Person person, Location location, Category category, String product, String model, String serialnumber, String notes, int deleted)
-			drepo.save(new Device(prepo.findByUsername("11111"),lrepo.findByOffice("w/ user").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Dell Latitude 5410","ABC1234","This is a laptop",0));
-			drepo.save(new Device(prepo.findByUsername("22222"),lrepo.findByOffice("w/ user").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Dell Latitude 5410","BCD2345","This is a laptop",0));
-			drepo.save(new Device(prepo.findByUsername("33333"),lrepo.findByOffice("Test Office").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Dell Latitude 5410","CDE3456","This is a laptop",0));
-			drepo.save(new Device(prepo.findByUsername("44444"),lrepo.findByOffice("Old Office").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Lenovo X450","DEF4567","This is a laptop",1));
-			drepo.save(new Device(prepo.findByUsername("-----"),lrepo.findByOffice("Test Office").get(0),crepo.findByCname("Video Conference System").get(0),"video conferencing device","Polycom","EFG6789","Userless video conferencing device",0));
+			drepo.save(new Device(prepo.findByUsername("11111"),lrepo.findByOffice("w/ user").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Dell Latitude 5410","ABC1234","This is a laptop",false));
+			drepo.save(new Device(prepo.findByUsername("22222"),lrepo.findByOffice("w/ user").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Dell Latitude 5410","BCD2345","This is a laptop",false));
+			drepo.save(new Device(prepo.findByUsername("33333"),lrepo.findByOffice("Test Office").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Dell Latitude 5410","CDE3456","This is a laptop",false));
+			drepo.save(new Device(prepo.findByUsername("44444"),lrepo.findByOffice("Old Office").get(0),crepo.findByCname("Laptop Computer").get(0),"laptop","Lenovo X450","DEF4567","This is a laptop",true));
+			drepo.save(new Device(prepo.findByUsername("-----"),lrepo.findByOffice("Test Office").get(0),crepo.findByCname("Video Conference System").get(0),"video conferencing device","Polycom","EFG6789","Userless video conferencing device",false));
 
 			Log.info("fetch all devices");
 			for (Device device : drepo.findAll()) {
-				Log.info(device.toString());
+				Log.info("Fetch all devices: " + device.toString());
 			}
 			
 		};

@@ -7,12 +7,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "persons")
+@SQLDelete(sql = "UPDATE persons SET deleted = true WHERE person_id=?")
+@Where(clause = "deleted=false")
 public class Person {
 
 // Properties
@@ -40,12 +49,12 @@ public class Person {
 	private String role; 
 	
 	//boolean required
-	private int admin, deleted;
+	private boolean admin, deleted;
 	
 // Constructors
 	public Person() {}
 	
-	public Person(String userName, String email, String firstName, String lastName, String notes, String passwordHash, String role, int admin, int deleted) {
+	public Person(String userName, String email, String firstName, String lastName, String notes, String passwordHash, String role, boolean admin, boolean deleted) {
 		this.username = userName;
 		this.email = email;
 		this.firstName = firstName;
@@ -112,16 +121,16 @@ public class Person {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public int getAdmin() {
+	public boolean getAdmin() {
 		return admin;
 	}
-	public void setAdmin(int admin) {
+	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	public int getDeleted() {
+	public boolean getDeleted() {
 		return deleted;
 	}
-	public void setDeleted(int deleted) {
+	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 	@Override

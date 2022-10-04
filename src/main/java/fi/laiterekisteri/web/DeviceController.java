@@ -1,5 +1,10 @@
 package fi.laiterekisteri.web;
 
+//needed to find soft deleted items
+//import javax.persistence.EntityManager;
+//import org.hibernate.Filter;
+//import org.hibernate.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,6 +31,11 @@ public class DeviceController {
 	private LocationRepository lrepo;
 	@Autowired
 	private CategoryRepository crepo;
+    
+	/*// needed to find soft deleted items
+	@Autowired
+    private EntityManager entityManager;
+    */
 	
 	// Frontpage, show all persons, devices, locations
 	@GetMapping({"/","/index"})
@@ -54,16 +64,25 @@ public class DeviceController {
         return "redirect:index";
     }
     
-    // Delete device
+    // Soft Delete device
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/deletedevice/{id}", method = RequestMethod.GET)
     public String deleteDevice(@PathVariable("id") Long deviceId, Model model) {
     	// must be changed to setDeletedById -> set device.deleted to 1
     	drepo.deleteById(deviceId);
         return "redirect:/";
-    }     
-    
-    // Edit device
+    }
+    // Find soft deleted Device -> requires Filter() and FilterDef() in Device.java instead of Where()
+    /*public Iterable<Device> findAll(boolean isDeleted) {
+        Session session = entityManager.unwrap(Session.class);
+    	Filter filter = session.enableFilter("deletedDeviceFilter");
+    	filter.setParameter("isDeleted", isDeleted);
+    	Iterable<Device> devices = drepo.findAll();
+    	session.disableFilter("deletedDeviceFilter");
+    	return devices;
+    }*/
+
+    // Edit Device
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value= {"/editdevice/{deviceId}"}, method = RequestMethod.GET)
     public String editDevice(@PathVariable("deviceId") Long deviceId, Model model) {	

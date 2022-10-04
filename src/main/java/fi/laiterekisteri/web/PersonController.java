@@ -1,5 +1,9 @@
 package fi.laiterekisteri.web;
 
+import javax.persistence.EntityManager;
+
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fi.laiterekisteri.domain.Device;
 import fi.laiterekisteri.domain.LocationRepository;
 import fi.laiterekisteri.domain.Person;
 import fi.laiterekisteri.domain.PersonRepository;
@@ -20,7 +25,9 @@ public class PersonController {
 	private PersonRepository prepo;
 	@Autowired
 	private LocationRepository lrepo;
-	
+    @Autowired
+    private EntityManager entityManager;
+    
 	// List all Persons
 	@GetMapping("/persons")
 	public String list(Model model) {

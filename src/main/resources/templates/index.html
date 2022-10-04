@@ -7,13 +7,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <title>Device Manager</title>
 </head>
 <body>
-	<h1>Device Manager <a href="/logout" class="btn btn-danger">Logout</a></h1>
+	<h1>Device Manager <a href="/logout" class="btn btn-danger">Logout</a> <a href="/changepwd" class="btn btn-danger">Change Password</a></h1>
 	<div>
 		<h2>Devices		
 		<a href="/persons" class="btn btn-info">Persons</a>
 		<a href="/locations" class="btn btn-info">Locations</a>
 		<a href="/categories" class="btn btn-info">Categories</a>
-		<a sec:authorize="hasAuthority('ADMIN')" href="/config" class="btn btn-warning">Configure</a>
+		<a sec:authorize="hasAuthority('ADMIN')" href="/config" class="btn btn-warning">TBA: Configure</a>
 		</h2>
 	</div>
 	<p></p>
@@ -39,11 +39,28 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<td th:text="${device.serialnumber}" />
 			<td th:text="${device.category.cname}" />
 			<td th:text="${device.person.email}" />
-			<td th:text="${device.location.department}" />
+			<td th:text="${device.location.office}" />
 			<td th:text="${device.notes}" />
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editdevice/{id}(id=${device.deviceId})}" class="btn btn-primary">Edit</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletedevice/{id}(id=${device.deviceId})}" class="btn btn-danger">Del</a></td>
 		</tr>
 	</table>
+	<div></div>
+	<div>
+		<h3>Dev Notes:</h3>
+		<table>
+			<tr><td>- CRITICAL BACKEND missing a real database</td></tr>
+			<tr><td>- MAJOR BACKEND+UI missing validations</td></tr>
+			<tr><td>- MAJOR BACKEND+UI missing password management</td></tr>
+			<tr><td>- MAJOR BACKEND missing error handling</td></tr>
+			<tr><td>- MAJOR BACKEND missing tests</td></tr>
+			<tr><td>- MAJOR BACKEND db cascade configuration needs validations and error handling</td></tr>
+			<tr><td>- MEDIUM BACKEND missing created, edited, deleted dates</td></tr>
+			<tr><td>- MEDIUM BACKEND+UI missing search function</td></tr>
+			<tr><td>- MEDIUM BACKEND user roles should be a class</td></tr>
+			<tr><td>- MINOR UI missing dedicated login and logout</td></tr>
+			<tr><td>- MINOR UI overall -> create-react-app</td></tr>
+		</table>
+	</div>
 </body>
 </html>

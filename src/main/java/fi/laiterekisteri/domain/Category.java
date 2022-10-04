@@ -7,11 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "categories")
+@SQLDelete(sql = "UPDATE categories SET deleted = true WHERE location_id=?")
+@Where(clause = "deleted=false")
 public class Category {
 	
 // Properties
@@ -30,12 +37,12 @@ public class Category {
 	private String notes;
 	
 	//boolean required
-	private int deleted;
+	private boolean deleted;
 	
 // Constructors
 	public Category() {}
 
-	public Category(String cname, String notes, int deleted) {
+	public Category(String cname, String notes, boolean deleted) {
 		this.cname = cname;
 		this.notes = notes;
 		this.deleted = deleted;
@@ -75,11 +82,11 @@ public class Category {
 		this.notes = notes;
 	}
 
-	public int getDeleted() {
+	public boolean getDeleted() {
 		return deleted;
 	}
 
-	public void setDeleted(int deleted) {
+	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 
