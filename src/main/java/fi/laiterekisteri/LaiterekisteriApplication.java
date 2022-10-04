@@ -47,14 +47,14 @@ public class LaiterekisteriApplication {
 			// String office, String address, String room, String notes, int deleted
 			lrepo.save(new Location("Test Office","1 Office Street, Testville","Department A","Unit 1","2nd Floor, Room 3","This is a note",false));
 			lrepo.save(new Location("Old Office","4 Office Street, Testville","Department B","Unit 3","5th Floor, Room 6","This is a note",false));
-			lrepo.save(new Location("w/ user","","","","","This is for devices carried by the user and with no static location",false));
+			lrepo.save(new Location("w/ user","","","","","This is for devices carried by the user and with no specific location",false));
 			
 			Log.info("create device categories");
 			// String category, String notes, int deleted
 			crepo.save(new Category("Laptop Computer","This is category for laptops",false));
-			crepo.save(new Category("Laptop","This is an old category for laptops",true));
+			crepo.save(new Category("Laptop","This is old category for laptops",true));
 			crepo.save(new Category("Smartphone","This is category for smartphones",false));
-			crepo.save(new Category("Video Conference System","",false));
+			crepo.save(new Category("Video Conference System","This category is for Video Conference Systems",false));
 
 			Log.info("create devices");
 			// Device(Person person, Location location, Category category, String product, String model, String serialnumber, String notes, int deleted)

@@ -23,8 +23,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<p></p>
 	<table class="table table-striped" style="width: 50%">
 		<tr>
-			<th>Owner</th>
+			<th>Email</th>
 			<th>Name</th>
+			<th>Username</th>
 			<th>Role</th>
 			<th>Notes</th>
 			<th sec:authorize="hasAuthority('ADMIN')">edit</th>
@@ -33,6 +34,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<tr th:each ="person : ${persons}">
 			<td th:text="${person.email}" />
 			<td th:text="${person.firstName} + ' ' + ${person.lastName}" />
+			<td th:text="${person.username}" />
 			<td th:text="${person.role}" />
 			<td th:text="${person.notes}" />
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/persons/editperson/{id}(id=${person.personId})}" class="btn btn-primary">Edit</a></td>

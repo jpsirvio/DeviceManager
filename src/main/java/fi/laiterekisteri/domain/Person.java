@@ -34,16 +34,16 @@ public class Person {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	private List<Device> devices;
 
-	//@Size(min = 5, max = 10, message = "username is not valid")
+	@Size(min = 3, max = 20, message = "Username is not valid")
 	private String username;
 	
-	//@Size(min = 1, max = 100, message = "value is not valid")
+	@Size(min = 1, max = 100, message = "Value is not valid. Min 1, Max 100 characters.")
 	private String email, firstName, lastName;
 	
-	//@Max(value = 900, message = "note is too long")
+	@Size(max = 900, message = "note is too long")
 	private String notes;
 	
-	//@Size(min = 8, max = 100, message = "password must be min 8 and max 100 characters")
+	@Size(min = 4, max = 100, message = "password must be min 4 and max 100 characters")
 	private String passwordHash;
 	
 	private String role; 
@@ -82,7 +82,7 @@ public class Person {
 	public String getUsername() {
 		return username;
 	}
-	public void setUserName(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 	public String getEmail() {
