@@ -30,6 +30,8 @@ public class WebSecurityConfig {
 			auth.antMatchers("/admin/**").hasAuthority("ADMIN");
 			// only admin can access h2-console
 			auth.antMatchers("/h2-console").hasAuthority("ADMIN");
+			// everyone can access api
+			auth.antMatchers("/api/**").permitAll();
 			auth.anyRequest().authenticated();
 		})
 				// H2 login
