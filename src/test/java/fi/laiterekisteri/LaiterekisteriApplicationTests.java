@@ -25,6 +25,9 @@ class LaiterekisteriApplicationTests {
 	@Test
 	public void contextLoads() throws Exception {
 		assertThat(dc).isNotNull();
+		assertThat(pc).isNotNull();
+		assertThat(lc).isNotNull();
+		assertThat(cc).isNotNull();
 	}
 
 }
