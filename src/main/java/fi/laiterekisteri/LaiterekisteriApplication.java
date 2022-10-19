@@ -105,7 +105,6 @@ public class LaiterekisteriApplication {
 				Log.info("Fetch category: " + category.toString());
 			}
 			
-			
 		};
 		
 	}
