@@ -27,10 +27,12 @@ public class LaiterekisteriApplication {
 	// Logger for demodata
 	private static final Logger Log = LoggerFactory.getLogger(LaiterekisteriApplication.class);
 
-	// Create demodata
 	@Bean
 	public CommandLineRunner demo(PersonRepository prepo, DeviceRepository drepo, LocationRepository lrepo, CategoryRepository crepo) {
 		return (args) -> {
+			
+			// create demodata for H2-server
+			
 			
 			Log.info("create persons");
 			// Person(String userName, String email, String firstName, String lastName, String notes, String passwordHash, String role, boolean admin, boolean deleted)
@@ -82,11 +84,27 @@ public class LaiterekisteriApplication {
 			drepo.save(new Device(prepo.findByUsername("44444"),lrepo.findByOffice("w/ user").get(0),crepo.findByCname("Smartphone").get(0),"smartphone","Samsung A52","ABC1234","This is a laptop",false));
 			drepo.save(new Device(prepo.findByUsername("22222"),lrepo.findByOffice("Test Office").get(0),crepo.findByCname("Smartphone").get(0),"smartphone","Samsung A52","ABC1234","This is a laptop",false));
 			drepo.save(new Device(prepo.findByUsername("33333"),lrepo.findByOffice("Test Office").get(0),crepo.findByCname("Smartphone").get(0),"smartphone","Samsung A52","ABC1234","This is a laptop",false));
-
+			
+			
+			
+			// Check data			
 			Log.info("fetch all devices");
 			for (Device device : drepo.findAll()) {
-				Log.info("Fetch all devices: " + device.toString());
+				Log.info("Fetch device: " + device.toString());
 			}
+			Log.info("fetch all persons");
+			for (Person person : prepo.findAll()) {
+				Log.info("Fetch person: " + person.toString());
+			}
+			Log.info("fetch all locations");
+			for (Location location : lrepo.findAll()) {
+				Log.info("Fetch location: " + location.toString());
+			}
+			Log.info("fetch all categories");
+			for (Category category : crepo.findAll()) {
+				Log.info("Fetch category: " + category.toString());
+			}
+			
 			
 		};
 		

@@ -26,11 +26,12 @@ public class WebSecurityConfig {
 			
 			// everyone can access css
 			auth.antMatchers("/css/**").permitAll();
-			// only admin can access admin-folder (not used)
+			// only admin can access admin-folder 
+			// this is not used
 			auth.antMatchers("/admin/**").hasAuthority("ADMIN");
 			// only admin can access h2-console
 			auth.antMatchers("/h2-console").hasAuthority("ADMIN");
-			// everyone can access api
+			// everyone can access api DANGER!
 			auth.antMatchers("/api/**").permitAll();
 			auth.anyRequest().authenticated();
 		})

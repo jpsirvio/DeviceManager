@@ -4,6 +4,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
 <title>Device List - Edit Device</title>
 </head>
 <body>
@@ -15,6 +16,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		
 		<label for="product">Product:</label>
 		<input type="text" id="product" th:field="*{product}" />
+		<div th:if="${#fields.hasErrors('product')}" th:errors="*{product}">Product Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="model">Device:</label>

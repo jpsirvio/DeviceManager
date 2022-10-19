@@ -4,6 +4,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 <title>Device Manager - Locations</title>
 </head>
 <body>
@@ -13,32 +15,37 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<a href="/" class="btn btn-info">Devices</a>
 		<a href="/persons" class="btn btn-info">Persons</a>
 		<a href="/categories" class="btn btn-info">Categories</a>
-		<a sec:authorize="hasAuthority('ADMIN')" href="/config" class="btn btn-warning">Configure</a>
 		</h2>
 	</div>
 	<p></p>
 	<div sec:authorize="hasAuthority('ADMIN')"><a href="/locations/addlocation" class="btn btn-primary">New Location...</a></div>
 	<p></p>
-	<div><label for="search">Search: &nbsp; </label><input type="text" /> not yet implemented</div>
+	<form th:action="@{/locations/search}" method="get">
+		<label for="search">Search: </label>
+		<input type="text" name="keyword" placeholder="Search locations" size="30" />
+		<button type="submit" class="btn btn-info">Search</button>
+	</form>
 	<p></p>
 	<table class="table table-striped" style="width: 50%">
 		<tr>
+			<th>Department</th>
+			<th>Unit</th>
 			<th>Office</th>
 			<th>Address</th>
-			<th>Department</th>
 			<th>Room</th>
 			<th>Notes</th>
 			<th sec:authorize="hasAuthority('ADMIN')">edit</th>
 			<th sec:authorize="hasAuthority('ADMIN')">del</th>
 		</tr>
-		<tr th:each ="location : ${locations}">
+		<tr th:each ="location : ${locationlist}" th:field="${location}">
+			<td th:text="${location.department}" />
+			<td th:text="${location.unit}" />
 			<td th:text="${location.office}" />
 			<td th:text="${location.address}" />
-			<td th:text="${location.department}" />
 			<td th:text="${location.room}" />
 			<td th:text="${location.notes}" />
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/locations/editlocation/{id}(id=${location.locationId})}" class="btn btn-primary">Edit</a></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/locations/delete/{id}(id=${location.locationId})}" class="btn btn-danger">Del</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/locations/editlocation/{id}(id=${location.locationId})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/locations/delete/{id}(id=${location.locationId})}" class="btn btn-danger"><i class="bi bi-trash"></i></a></td>
 		</tr>
 	</table>
 </body>

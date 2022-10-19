@@ -4,14 +4,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
 <title>Device List - Add new</title>
 </head>
 <body>
 	<h1>Devices</h1>
 	<h2>Add Person</h2>
-	 	<form th:object="${person}" th:action="@{saveperson}" action="#" method="post" class="table table-striped" style="width: 30%">
+	 	<form th:object="${person}" th:action="@{savenewperson}" action="#" method="post" class="table table-striped" style="width: 30%">
 		<label for="email">E-mail:</label>
-		<input type="text" id="email" th:field="*{email}" />
+		<input type="email" id="email" th:field="*{email}" />
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="firstName">First Name:</label>
@@ -34,6 +35,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<input type="text" id="role" th:field="*{role}" />
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
+		<label for="password">Password:</label>
+		<input type="password" id="password" th:field="*{passwordHash}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
 		<label for="admin">Admin:</label>
 		<input type="text" id="admin" th:field="*{admin}" />
 		<div style="clear: both; display: block; height: 10px;"></div>
@@ -44,6 +49,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		
 		<input type="submit" value="Save" class="btn btn-success"></input>		
 	</form>
-	<a href="/" class="btn btn-secondary">Cancel</a>
+	<a href="/persons" class="btn btn-secondary">Cancel</a>
 </body>
 </html>

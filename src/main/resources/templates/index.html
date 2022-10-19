@@ -4,6 +4,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 <title>Device Manager</title>
 </head>
 <body>
@@ -13,13 +15,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<a href="/persons" class="btn btn-info">Persons</a>
 		<a href="/locations" class="btn btn-info">Locations</a>
 		<a href="/categories" class="btn btn-info">Categories</a>
-		<a sec:authorize="hasAuthority('ADMIN')" href="/config" class="btn btn-warning">TBA: Configure</a>
 		</h2>
 	</div>
 	<p></p>
 	<div sec:authorize="hasAuthority('ADMIN')"><a href="/adddevice" class="btn btn-primary">New Device...</a></div>
 	<p></p>
-	<div><label for="search">Search: &nbsp; </label><input type="text" /> not yet implemented</div>
+	<form th:action="@{/search}" method="get">
+		<label for="search">Search: </label>
+		<input type="text" name="keyword" placeholder="Search devices" size="30" />
+		<button type="submit" class="btn btn-info">Search</button>
+	</form>
 	<p></p>
 	<table class="table table-striped" style="width: 50%">
 		<tr>
@@ -30,10 +35,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<th>Owner</th>
 			<th>Location</th>
 			<th>Notes</th>
-			<th sec:authorize="hasAuthority('ADMIN')">edit</th>
-			<th sec:authorize="hasAuthority('ADMIN')">del</th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
 		</tr>
-		<tr th:each ="device : ${devices}">
+		<tr th:each ="device : ${devicelist}" th:field="${device}">
 			<td th:text="${device.product}" />
 			<td th:text="${device.model}" />
 			<td th:text="${device.serialnumber}" />
@@ -41,26 +46,34 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<td th:text="${device.person.email}" />
 			<td th:text="${device.location.office}" />
 			<td th:text="${device.notes}" />
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editdevice/{id}(id=${device.deviceId})}" class="btn btn-primary">Edit</a></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletedevice/{id}(id=${device.deviceId})}" class="btn btn-danger">Del</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editdevice/{id}(id=${device.deviceId})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletedevice/{id}(id=${device.deviceId})}" class="btn btn-danger"><i class="bi bi-trash"></i></a></td>
 		</tr>
 	</table>
 	<div></div>
+	
 	<div sec:authorize="hasAuthority('ADMIN')">
 		<h3>Dev Notes:</h3>
-		<table>
-			<tr><td>- CRITICAL BACKEND missing a real database</td></tr>
-			<tr><td>- MAJOR BACKEND+UI missing validations</td></tr>
-			<tr><td>- MAJOR BACKEND+UI missing password management</td></tr>
-			<tr><td>- MAJOR BACKEND missing error handling</td></tr>
-			<tr><td>- MAJOR BACKEND missing tests</td></tr>
-			<tr><td>- MAJOR BACKEND db cascade configuration needs validations and error handling</td></tr>
-			<tr><td>- MEDIUM BACKEND missing created, edited, deleted dates</td></tr>
-			<tr><td>- MEDIUM BACKEND+UI missing search function</td></tr>
-			<tr><td>- MEDIUM BACKEND user roles should be a class</td></tr>
-			<tr><td>- MINOR UI missing dedicated login and logout</td></tr>
-			<tr><td>- MINOR UI overall -> create-react-app</td></tr>
+		<table class="table table-bordered table-sm mt-2" style="width: 40%">
+			<tr><td>2022-10-12 DONE</td><td>CRITICAL BACKEND missing a real database</td></tr>
+			<tr><td>2022-10-19 FIXED</td><td>CRTICAL BACKEND Editing Person blanks password</td></tr>
+			<tr><td>2022-10-19 FIXED</td><td>MAJOR BACKEND+UI Can't add password for a new Person, can't change password</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND+UI Editing Person doesn not work, validation errors?</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND+UI New password must be filled in crypted form</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND unsecured REST API, needs JWT</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND+UI missing validations</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND+UI missing password management</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND missing error handling</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND missing tests</td></tr>
+			<tr><td>-</td><td>MAJOR BACKEND db cascade configuration needs validations and error handling</td></tr>
+			<tr><td>-</td><td>MEDIUM BACKEND missing created, edited, deleted dates</td></tr>
+			<tr><td>2022-10-19 DONE</td><td>MEDIUM BACKEND+UI missing search function</td></tr>
+			<tr><td>-</td><td>MEDIUM BACKEND user roles should be a class</td></tr>
+			<tr><td>-</td><td>MINOR UI missing dedicated login and logout</td></tr>
+			<tr><td>-</td><td>MINOR UI fields are too short</td></tr>
+			<tr><td>-</td><td>MINOR/MAJOR UI overall -> create-react-app</td></tr>
 		</table>
 	</div>
+	
 </body>
 </html>

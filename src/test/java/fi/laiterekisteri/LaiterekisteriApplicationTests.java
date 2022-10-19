@@ -1,20 +1,18 @@
-package fi.syyttaja.lauta.laiterekisteri;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+package fi.laiterekisteri;
 
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import fi.laiterekisteri.web.CategoryController;
 import fi.laiterekisteri.web.DeviceController;
 import fi.laiterekisteri.web.LocationController;
 import fi.laiterekisteri.web.PersonController;
 
-@DataJpaTest
-class RepositoryTests {
-
+@SpringBootTest
+class LaiterekisteriApplicationTests {
+	
 	@Autowired
 	DeviceController dc;
 	@Autowired 
@@ -25,10 +23,8 @@ class RepositoryTests {
 	CategoryController cc;
 	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void contextLoads() throws Exception {
+		assertThat(dc).isNotNull();
 	}
-	
-	
 
 }

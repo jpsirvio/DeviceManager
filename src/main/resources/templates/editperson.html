@@ -4,17 +4,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
 <title>Device Manager - Add Person</title>
 </head>
 <body>
 	<h1>Devices</h1>
 	<h2>Edit Person</h2>
-	<form th:object="${editPerson}" th:action="@{/persons/saveperson}" action="#" method="post" class="table table-striped" style="width: 30%">
+	<form th:object="${editPerson}" th:action="@{/persons/saveeditedperson}" action="#" method="post" class="table table-striped" style="width: 30%">
 		<input type="hidden" id="personId" th:field="*{personId}" />
 		<div></div>
 		
 		<label for="email">E-mail:</label>
 		<input type="text" id="email" th:field="*{email}" />
+		<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="firstName">First Name:</label>
@@ -27,6 +29,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		
 		<label for="username">Username:</label>
 		<input type="text" id="username" th:field="*{username}" />
+		<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Email Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="notes">Notes:</label>
@@ -35,6 +38,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		
 		<label for="role">Role:</label>
 		<input type="text" id="role" th:field="*{role}" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+				
+		<label for="password">Password:</label>
+		<input type="password" id="password" th:field="*{passwordHash}" />
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="admin">Admin:</label>
@@ -47,7 +54,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		
 		<input type="submit" value="Save" class="btn btn-success"></input>	
 	</form>		
-	<a href="/" class="btn btn-secondary">Cancel</a>
+	<a href="/persons" class="btn btn-secondary">Cancel</a>
 
 </body>
 </html>

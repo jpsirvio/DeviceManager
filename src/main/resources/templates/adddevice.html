@@ -4,22 +4,27 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/boostrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
 <title>Device List - Add new</title>
 </head>
 <body>
 	<h1>Devices</h1>
 	<h2>Add Device</h2>
 	 	<form th:object="${device}" th:action="@{savedevice}" action="#" method="post" class="table table-striped" style="width: 30%">
+	 	
 		<label for="product">Product:</label>
 		<input type="text" id="product" th:field="*{product}" />
+		<div th:if="${#fields.hasErrors('product')}" th:errors="*{product}">Product Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
-		<label for="model">Device:</label>
+		<label for="model">Model:</label>
 		<input type="text" id="model" th:field="*{model}" />
+		<div th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Model Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="serialnumber">S/N:</label>
 		<input type="text" id="serialnumber" th:field="*{serialnumber}" />
+		<div th:if="${#fields.hasErrors('serialnumber')}" th:errors="*{serialnumber}">SN Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="categorylist">Category:</label>
@@ -42,6 +47,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			
 		<label for="notes">Notes:</label>
 		<input type="text" id="notes" th:field="*{notes}" />
+		<div th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}">Note Error</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="deleted">Deleted:</label>

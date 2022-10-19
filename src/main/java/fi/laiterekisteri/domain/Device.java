@@ -2,6 +2,7 @@ package fi.laiterekisteri.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.SQLDelete;
@@ -25,31 +26,35 @@ public class Device {
 // Properties
 	// deviceId is generated for each device
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "device_id")
 	private Long deviceId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "personId")
+	@JoinColumn(name = "person_id")
 	private Person person;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "locationId")
+	@JoinColumn(name = "location_id")
 	private Location location;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "categoryId")
+	@JoinColumn(name = "category_id")
 	private Category category;
 	
-	//@Max( value= 50, message = "value is not valid")
+	@NotBlank(message = "value is mandatory")
+	@Size(max= 100, message = "value is too long")
 	private String product, model, serialnumber;
 		
-	//@Max(value = 900, message = "note is too long")
+	@Size(max = 900, message = "note is too long")
 	private String notes;
 	
-	//boolean required
+	// boolean required, default to false
+	// true-value causes @Where to hide item from views
 	private boolean deleted = Boolean.FALSE;
 	
 	// created, edited deleted dates
+	// not in use currently
 	private Date dateCreated, dateEdited, dateDeleted;
 	
 // Constructors

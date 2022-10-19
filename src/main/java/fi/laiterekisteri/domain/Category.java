@@ -2,13 +2,14 @@ package fi.laiterekisteri.domain;
 
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -17,23 +18,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "categories")
-@SQLDelete(sql = "UPDATE categories SET deleted = true WHERE location_id=?")
+@SQLDelete(sql = "UPDATE categories SET deleted = true WHERE category_id=?")
 @Where(clause = "deleted=false")
 public class Category {
 	
 // Properties
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "category_id")
 	private Long categoryId;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="category")
 	private List<Device> devices;
 	
-	//@Max( value= 50, message = "value is not valid")
+	@Size( max= 50, message = "value is not valid")
 	private String cname;
 	
-	//@Max(value = 900, message = "note is too long")
+	@Size( max = 900, message = "note is too long")
 	private String notes;
 	
 	//boolean required

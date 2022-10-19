@@ -2,21 +2,18 @@ package fi.laiterekisteri.domain;
 
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "persons")
@@ -27,7 +24,8 @@ public class Person {
 // Properties
 	// personId is generated for each location
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "person_id")
 	private Long personId;
 	
 	@JsonIgnore
@@ -43,7 +41,7 @@ public class Person {
 	@Size(max = 900, message = "note is too long")
 	private String notes;
 	
-	@Size(min = 4, max = 100, message = "password must be min 4 and max 100 characters")
+	@Size(min = 4, max = 250, message = "password must be min 4 and max 100 characters")
 	private String passwordHash;
 	
 	private String role; 
