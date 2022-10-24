@@ -26,7 +26,8 @@ public class LaiterekisteriApplication {
 
 	// Logger for demodata
 	private static final Logger Log = LoggerFactory.getLogger(LaiterekisteriApplication.class);
-
+	
+	/*
 	@Bean
 	public CommandLineRunner demo(PersonRepository prepo, DeviceRepository drepo, LocationRepository lrepo, CategoryRepository crepo) {
 		return (args) -> {
@@ -109,5 +110,6 @@ public class LaiterekisteriApplication {
 		};
 		
 	}
+	*/
 
 }

@@ -23,8 +23,8 @@ INSERT INTO persons (username, email, first_name, last_name, notes, password_has
 VALUES ("-----"," ","unspecified","-","This is a unspecified user for devices without a named user","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,0)
 , ("11111","first.user@test.com","First","User","This is the first user. Admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,0)
 , ("22222","second.user@test.com","Second","User","Second user, not an admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,0)
-, ("user","user@test.com","User","User","Test User","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",0,0)
-, ("admin","admin@test.com","Admin","Admin","Test Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,0)
+, ("user","user@test.com","User","User","Test User","$2a$12$YORc6xN.gFQtFYPexg5QueyOK4W6igrOPCHDKEC7/I7abXR61x6QO","USER",0,0)
+, ("admin","admin@test.com","Admin","Admin","Test Admin","$2a$12$hIDisOJbsGRa8xRhLM7lNOM30tvyHGs08W26M69R2Lw/0XD20a/TK","ADMIN",1,0)
 , ("dev","dev@dev.com","Dev","Dev","Developer","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",1,0);
 
 CREATE TABLE locations (
