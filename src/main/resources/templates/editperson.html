@@ -16,24 +16,27 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		
 		<label for="email">E-mail:</label>
 		<input type="text" id="email" th:field="*{email}" />
-		<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+		<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Value is not valid. Min 1, Max 100 characters.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="firstName">First Name:</label>
 		<input type="text" id="firstName" th:field="*{firstName}" />
+		<div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Value is not valid. Min 1, Max 100 characters.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="lastName">Last Name:</label>
 		<input type="text" id="lastName" th:field="*{lastName}" />
+		<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Value is not valid. Min 1, Max 100 characters.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="username">Username:</label>
 		<input type="text" id="username" th:field="*{username}" />
-		<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Email Error</div>
+		<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username is not valid or already in use.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="notes">Notes:</label>
 		<input type="text" id="notes" th:field="*{notes}" />
+		<div th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}">Note is too long.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="role">Role:</label>
@@ -42,6 +45,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				
 		<label for="password">Password:</label>
 		<input type="password" id="password" th:field="*{passwordHash}" />
+		<div th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}">Password must be min 4 and max 100 characters.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="admin">Admin:</label>

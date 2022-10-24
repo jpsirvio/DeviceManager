@@ -32,7 +32,7 @@ public class Category {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="category")
 	private List<Device> devices;
 	
-	@Size( max= 50, message = "value is not valid")
+	@Size( min=1,  max= 50, message = "value is not valid")
 	private String cname;
 	
 	@Size( max = 900, message = "note is too long")

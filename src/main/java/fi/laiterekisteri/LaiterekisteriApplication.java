@@ -35,14 +35,15 @@ public class LaiterekisteriApplication {
 			
 			
 			Log.info("create persons");
+			// user-user, admin-admin- muut-sala1234
 			// Person(String userName, String email, String firstName, String lastName, String notes, String passwordHash, String role, boolean admin, boolean deleted)
 			prepo.save(new Person("-----"," ","unspecified","-","This is a unspecified user for devices without a named user","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
 			prepo.save(new Person("11111","first.user@test.com","First","User","This is the first user. Admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,false));
 			prepo.save(new Person("22222","second.user@test.com","Second","User","Second user, not an admin, not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
 			prepo.save(new Person("33333","third.user@test.com","Third","User","Third user, not an admin, is not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
 			prepo.save(new Person("44444","fourth.user@test.com","Fourth","User","Fourth user, admin and is not deleted","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,false));
-			prepo.save(new Person("user","user@test.com","User","User","Test User","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
-			prepo.save(new Person("admin","admin@test.com","Admin","Admin","Test Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,false));
+			prepo.save(new Person("user","user@test.com","User","User","Test User","$2a$12$YORc6xN.gFQtFYPexg5QueyOK4W6igrOPCHDKEC7/I7abXR61x6QO","USER",false,false));
+			prepo.save(new Person("admin","admin@test.com","Admin","Admin","Test Admin","$2a$12$hIDisOJbsGRa8xRhLM7lNOM30tvyHGs08W26M69R2Lw/0XD20a/TK","ADMIN",true,false));
 			prepo.save(new Person("superadmin","superadmin@test.com","Super","Admin","Test Super Admin","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","ADMIN",true,true));
 			prepo.save(new Person("dummyuser1","dummu1@test.com","Dummy","One","Dummy User 1","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));
 			prepo.save(new Person("dummyuser2","dummu2@test.com","Dummy","Two","Dummy User 2","$2a$10$WsCC6wZO08qVeOpZ1VkfCe5bvuSYqyryNsSOx2OVfrYb9CWslN1/W","USER",false,false));

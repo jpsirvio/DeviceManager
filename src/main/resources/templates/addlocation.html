@@ -13,22 +13,27 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	 	<form th:object="${location}" th:action="@{savelocation}" action="#" method="post" class="table table-striped" style="width: 30%">
 		<label for="office">Office:</label>
 		<input type="text" id="office" th:field="*{office}" />
+		<div th:if="${#fields.hasErrors('office')}" th:errors="*{office}">Value is not valid.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="address">Address:</label>
 		<input type="text" id="address" th:field="*{address}" />
+		<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Value is not valid.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="department">Department:</label>
 		<input type="text" id="deparment" th:field="*{department}" />
+		<div th:if="${#fields.hasErrors('department')}" th:errors="*{department}">Value is not valid.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="room">Room:</label>
 		<input type="text" id="room" th:field="*{room}" />
+		<div th:if="${#fields.hasErrors('room')}" th:errors="*{room}">Value is not valid.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 			
 		<label for="notes">Notes:</label>
 		<input type="text" id="notes" th:field="*{notes}" />
+		<div th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}">Note is too long.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="deleted">Deleted:</label>

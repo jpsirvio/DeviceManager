@@ -13,10 +13,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	 	<form th:object="${category}" th:action="@{savecategory}" action="#" method="post" class="table table-striped" style="width: 30%">
 		<label for="category">Category name:</label>
 		<input type="text" id="category" th:field="*{cname}" />
+		<div th:if="${#fields.hasErrors('cname')}" th:errors="*{cname}">Value is not valid.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 			
 		<label for="notes">Notes:</label>
 		<input type="text" id="notes" th:field="*{notes}" />
+		<div th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}">Note is too long.</div>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
 		<label for="deleted">Deleted:</label>
